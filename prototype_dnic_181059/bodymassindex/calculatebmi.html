@@ -57,7 +57,7 @@
 
   <div class="px-1">
     <div class="nav-item active">
-      <a class="nav-link text-light h3" href="#">My profile<span class="sr-only"></span></a>
+      <a class="nav-link text-light h3" href="../myprofile.html">My profile<span class="sr-only"></span></a>
     </div>
   </div>
 </nav>
@@ -79,15 +79,15 @@
     <div class="col-8">
       <div class="container px-5">
         <div class="p-5 rounded bmi">
-          <div class="px-5">
+          <div class="px-5 pb-3">
             <form>
               <div class="form-group">
                 <div class="row">
                   <div class="col-3">
-                    <label for="exampleInputEmail1">Weight:</label>
+                    <label for="input-weight">Weight:</label>
                   </div>
                   <div class="col-7">
-                    <input type="number" min="20" max="150" step="1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your weight in kilograms">
+                    <input type="number" min="20" max="150" step="1" class="form-control" id="input-weight" aria-describedby="emailHelp" placeholder="Enter your weight in kilograms">
                   </div>
                   <div class="col-2">
                     <label>kg</label>
@@ -97,10 +97,10 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-3">
-                    <label for="exampleInputPassword1">Height:</label>
+                    <label for="input-height">Height:</label>
                   </div>
                   <div class="col-7">
-                    <input type="number" min="50" max="220" class="form-control" id="exampleInputPassword1" placeholder="Enter your height in centimeters">
+                    <input type="number" min="50" max="220" class="form-control" id="input-height" placeholder="Enter your height in centimeters">
                   </div>
                   <div class="col-2">
                     <label>cm</label>
@@ -109,11 +109,12 @@
               </div>
 
               <div class="pt-5">
-                <button type="submit" class="btn btn-light">Calculate</button>
+                <button type="button" class="btn btn-light" id="calculate-bmi">Calculate</button>
               </div>
 
               <div class="pt-5">
-                <h5>Your calculated body mass index is: </h5>
+                <h5>Your calculated body mass index is: <span id="calculated_bmi_by_formula" class="font-weight-bold"></span> <small id="text-bmi" style="color: coral" class="font-weight-bold"></small></h5>
+
               </div>
             </form>
           </div>
@@ -124,7 +125,7 @@
       <div>
         <div class="rounded bmi pb-5 px-4 pt-4">
           <h4 class="font-weight-bold pb-4">Types of BMI</h4>
-          <div class="row p-3">
+          <div class="row p-3 rounded" id="div-underweight">
             <div class="col-6">
               <h5 class="font-weight-bold"> <18.5 </h5>
             </div>
@@ -132,7 +133,7 @@
               <h5>Underweight</h5>
             </div>
           </div>
-          <div class="row p-3">
+          <div class="row p-3 rounded" id="div-normal">
             <div class="col-6">
               <h5 class="font-weight-bold">  18.5 - 24.9 </h5>
             </div>
@@ -140,7 +141,7 @@
               <h5>Normal</h5>
             </div>
           </div>
-          <div class="row p-3">
+          <div class="row p-3 rounded" id="div-overweight">
             <div class="col-6">
               <h5 class="font-weight-bold">  25 - 29.9 </h5>
             </div>
@@ -148,7 +149,7 @@
               <h5>Overweight</h5>
             </div>
           </div>
-          <div class="row pt-3 px-3">
+          <div class="row p-3 rounded" id="div-obesity">
             <div class="col-6">
               <h5 class="font-weight-bold">  >30 </h5>
             </div>
@@ -164,7 +165,59 @@
     <div class="px-1">
       <h5 class="text-dark">Read more about the Body Mass Index <a href="bmi-info.html" style="color: orangered">here</a>.</h5>
     </div>
+  </div>
 </div>
 <!-- /MAIN PART -->
+<script>
+  $(document).ready(function() {
+    $('#calculate-bmi').click(()=>{
+      //alert("the button was clicked");
+      let weight = $('#input-weight').val();
+      let height = $('#input-height').val();
+      let bmi_calculated = ( weight / (height * height) ) * 10000;
+      bmi_calculated = Math. round(bmi_calculated * 10) / 10;
+      //alert(bmi_calculated);
+      document.querySelector('#calculated_bmi_by_formula').innerHTML = bmi_calculated;
+      document.querySelector('#text-bmi').innerHTML = writeText(bmi_calculated);
+      highlightDivElement(bmi_calculated);
+      document. getElementById("calculate-bmi").disabled = true;
+    });
+  });
+
+  function writeText(bmi){
+    let text="";
+    if(bmi<18.5){
+      text = "Underweight";
+    }
+    else if(bmi>=18.5 && bmi<=24.9){
+      text = "Normal weight"
+    }
+    else if(bmi>=25 && bmi<=29.9){
+      text = "Overweight"
+    }
+    else if(bmi>=30){
+      text = "Obesity"
+    }
+    else {
+      text = "The parameters you have entered are wrong. Please try again."
+    }
+    return text;
+  }
+
+  function highlightDivElement(bmi){
+    if(bmi<18.5){
+      $('#div-underweight').css({'background-color':'#FFFF99'});
+    }
+    else if(bmi>=18.5 && bmi<=24.9){
+      $('#div-normal').css({'background-color':'#90EE90'});
+    }
+    else if(bmi>=25 && bmi<=29.9){
+      $('#div-overweight').css({'background-color':'#FFB6C1'});
+    }
+    else if(bmi>=30){
+      $('#div-obesity').css({'background-color':'#FF7F7F'});
+    }
+  }
+</script>
 </body>
 </html>
