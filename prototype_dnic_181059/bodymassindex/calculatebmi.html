@@ -169,6 +169,7 @@
 </div>
 <!-- /MAIN PART -->
 <script>
+
   $(document).ready(function() {
     $('#calculate-bmi').click(()=>{
       //alert("the button was clicked");
@@ -177,16 +178,23 @@
       let bmi_calculated = ( weight / (height * height) ) * 10000;
       bmi_calculated = Math. round(bmi_calculated * 10) / 10;
       //alert(bmi_calculated);
-      document.querySelector('#calculated_bmi_by_formula').innerHTML = bmi_calculated;
-      document.querySelector('#text-bmi').innerHTML = writeText(bmi_calculated);
-      highlightDivElement(bmi_calculated);
-      document. getElementById("calculate-bmi").disabled = true;
+      if (weight>30 && weight<170 && height>100 && height<230){
+        document.querySelector('#calculated_bmi_by_formula').innerHTML = bmi_calculated;
+        highlightDivElement(bmi_calculated);
+        document. getElementById("calculate-bmi").disabled = true;
+      }
+      document.querySelector('#text-bmi').innerHTML = writeText(bmi_calculated, weight, height);
     });
   });
 
-  function writeText(bmi){
+  function writeText(bmi, weight, height){
     let text="";
-    if(bmi<18.5){
+
+    if(weight<30 || weight>170 || height<100 || height>230){
+      text= "Please enter valid numbers. This calculator is meant for adults."
+    }
+
+    else if(bmi<18.5){
       text = "Underweight";
     }
     else if(bmi>=18.5 && bmi<=24.9){
@@ -218,6 +226,8 @@
       $('#div-obesity').css({'background-color':'#FF7F7F'});
     }
   }
+
+
 </script>
 </body>
 </html>

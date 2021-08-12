@@ -206,3 +206,7 @@ p{
     height: 15%; !important;
     background-color: lightgrey;
 }
+
+.help-block{
+    color: #dd4b39;
+}
