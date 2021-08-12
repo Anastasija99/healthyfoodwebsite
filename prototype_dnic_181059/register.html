@@ -112,10 +112,11 @@
           <div class="form-group">
             <div class="row">
               <div class="col-4">
-                <label for="exampleInputAge">Age</label>
+                <label for="age">Age</label>
               </div>
               <div class="col-8">
-                <input type="number" min="10" max="90" class="form-control" id="exampleInputAge" aria-describedby="emailHelp" placeholder="Enter your age">
+                <input type="number" id="age" min="10" max="90" class="form-control" name="age" aria-describedby="emailHelp" placeholder="Enter your age">
+
               </div>
             </div>
           </div>
@@ -178,7 +179,7 @@
 <script>
 
   $(document).ready(function() {
-    $('#identicalForm').bootstrapValidator();
+    $('#identicalForm').bootstrapValidator({});
   });
 
   var percentage = 0;
