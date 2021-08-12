@@ -24,6 +24,10 @@
   <link rel="stylesheet" href="jquery/jquery-ui.css">
   <script src="jquery/jquery-1.8.3.min.js"></script>
   <script src="jquery/jquery-ui.js"></script>
+  
+  <!-- BOOTSTRAP VALIDATOR --->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
 </head>
 <body>
 
@@ -84,7 +88,7 @@
       <h1 class="display-4 px-5 pb-5 font-weight-bold">Register.</h1>
 
       <div class="px-5">
-        <form>
+        <form id="identicalForm">
           <div class="form-group">
             <div class="row">
               <div class="col-4">
@@ -133,7 +137,7 @@
                 <label for="password">Password</label>
               </div>
               <div class="col-8">
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                 <div id="progress-bar" class="rounded"></div>
               </div>
             </div>
@@ -144,7 +148,10 @@
                 <label for="exampleInputPassword2">Repeat password</label>
               </div>
               <div class="col-8">
-                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Enter password">
+                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Enter password" name="confirmPassword"
+                       data-bv-identical="true"
+                       data-bv-identical-field="password"
+                       data-bv-identical-message="Passwords don't match">
               </div>
             </div>
           </div>
@@ -169,6 +176,10 @@
 </div>
 
 <script>
+
+  $(document).ready(function() {
+    $('#identicalForm').bootstrapValidator();
+  });
 
   var percentage = 0;
 
