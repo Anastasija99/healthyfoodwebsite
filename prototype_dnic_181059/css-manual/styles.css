@@ -199,3 +199,10 @@ p{
 .dietrow{
     background-color: lightgrey;
 }
+
+/* -----------------------------------------PROGRESS BAR--------------------------------------------------------------*/
+#progress-bar{
+    display: inline-block;
+    height: 15%; !important;
+    background-color: lightgrey;
+}
