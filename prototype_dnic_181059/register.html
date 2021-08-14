@@ -42,7 +42,10 @@
       </div>
       <h1 class="display-5 px-5 font-weight-bold">Register.</h1>
       <div class="px-5">
-        <form id="identicalForm">
+        <form id="identicalForm" data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
+        action="myprofile.html">
           <div class="row">
             <div class="col-6">
               <div class="form-group">
@@ -53,7 +56,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="text" class="form-control bg-light border-light" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your first name here.">
+                    <input type="text" name="firstName" class="form-control bg-light border-light" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your first name here." minlength="3" maxlength="25"  required>
                   </div>
                 </div>
               </div>
@@ -67,7 +70,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="text" class="form-control bg-light border-light" id="exampleInputLastName" aria-describedby="emailHelp" placeholder="Enter your last name here.">
+                    <input type="text" name="lastName" class="form-control bg-light border-light" id="exampleInputLastName"  minlength="3" maxlength="25" aria-describedby="emailHelp" placeholder="Enter your last name here." required>
                   </div>
                 </div>
               </div>
@@ -83,7 +86,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="number" id="age" min="10" max="90" class="form-control bg-light border-light" name="age" aria-describedby="emailHelp" placeholder="Enter your age here.">
+                    <input type="number" id="age" min="10" max="90" class="form-control bg-light border-light" name="age" aria-describedby="emailHelp" placeholder="Enter your age here." required>
                   </div>
                 </div>
               </div>
@@ -97,7 +100,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <select class="form-control" id="gender">
+                    <select class="form-control" id="gender" name="gender" required>
                       <option value="" disabled selected hidden>Select your gender</option>
                       <option>male</option>
                       <option>female</option>
@@ -119,7 +122,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="text" class="form-control bg-light border-light" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter username here." >
+                    <input type="text" name="username" class="form-control bg-light border-light" id="exampleInputEmail" aria-describedby="emailHelp" minlength="3" maxlength="25" placeholder="Enter username here." required>
                     <small class="form-text text-muted">This can be your e-mail address.</small>
                   </div>
                 </div>
@@ -134,7 +137,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="email" class="form-control bg-light border-light" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="Enter your e-mail address here.">
+                    <input type="email" name="email" class="form-control bg-light border-light" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="Enter your e-mail address here." required>
                   </div>
                 </div>
               </div>
@@ -150,7 +153,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="password" class="form-control bg-light border-light" id="password" placeholder="Enter password here." name="password">
+                    <input type="password" class="form-control bg-light border-light" id="password" placeholder="Enter password here." name="password" required>
                     <div id="progress-bar" class="rounded"></div>
                   </div>
                 </div>
@@ -160,15 +163,12 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col">
-                    <label for="exampleInputPassword2"><small class="font-weight-bold">Repeat password</small></label>
+                    <label for="confirmPassword"><small class="font-weight-bold">Repeat password</small></label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <input type="password" class="form-control bg-light border-light" id="exampleInputPassword2" placeholder="Repeat password here." name="confirmPassword"
-                           data-bv-identical="true"
-                           data-bv-identical-field="password"
-                           data-bv-identical-message="Passwords don't match!" style="color: black">
+                    <input type="password" class="form-control bg-light border-light" id="confirmPassword" placeholder="Repeat password here." name="confirmPassword" required>
                   </div>
                 </div>
               </div>
@@ -195,9 +195,95 @@
 
 <script>
 
+
   $(document).ready(function() {
-    $('#identicalForm').bootstrapValidator({});
+    $('#identicalForm').bootstrapValidator({
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields: {
+        firstName: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your first name'
+            }
+          }
+        },
+        lastName: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your last name'
+            }
+          }
+        },
+        username: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your username'
+            }
+
+          }
+        },
+        email: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your e-mail address'
+            },
+            emailAddress: {
+              message: 'The input is not a valid email address'
+            }
+          }
+        },
+        age: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your age'
+            }
+          }
+        },
+        gender: {
+          validators: {
+            notEmpty: {
+              message: 'Please select your gender'
+            }
+          }
+        },
+        password: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter a password'
+            },
+            identical: {
+              field: 'confirmPassword',
+              message: 'Please repeat the password in the following input'
+            }
+          }
+        },
+        confirmPassword: {
+          validators: {
+            notEmpty: {
+              message: 'Please repeat the password'
+            },
+            identical: {
+              field: 'password',
+              message: 'This does not match your password'
+            }
+          }
+        }
+      },
+      submitHandler: function(validator, form, submitButton) {
+        var fullName = [validator.getFieldElements('firstName').val(),
+          validator.getFieldElements('lastName').val()
+        ].join(' ');
+        alert('Hello ' + fullName);
+      }
+    });
   });
+
+
+
 
   var percentage = 0;
 
