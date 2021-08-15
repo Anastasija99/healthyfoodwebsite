@@ -19,6 +19,10 @@
   <!-- Theme CSS -->
   <link href="css/style.min.css" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -80,17 +84,19 @@
     </div>
     <div class="col-8">
       <h1>Hello <span id="usernameSpan"></span>! </h1>
+      <h3>Looking good!</h3>
       <div class="row pt-5">
         <div class="col">
 
           <div class="pt-3">
-            <button class="btn btn-outline-secondary btn-light"><a href="bodymassindex/calculatebmi.html" class="text-dark text-decoration-none" >Calculate body mass index</button>
+            <h3>Body mass index: <span id="bmi-span"></span></h3>
+            <button class="btn btn-outline-secondary btn-light"><a href="bodymassindex/calculatebmi.html" class="text-dark text-decoration-none" >Calculate body mass index</a></button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row d-flex pl-5 pt-5">
+  <div class="row d-flex pl-3 pt-5">
     <div class="col-4 pl-1 pr-4">
       <div class="pl-2 pr-5">
         <div class="progress orange"> <span class="progress-left"> <span class="progress-bar"></span> </span> <span class="progress-right"> <span class="progress-bar"></span> </span>
@@ -98,9 +104,8 @@
         </div>
       </div>
     </div>
-    <div class="col-8 pt-5 pl-5">
-        <button class="btn btn-outline-secondary btn-light"><a href="https://www.facebook.com/" class="text-dark text-decoration-none">Share progress</a></button>
-
+    <div class="col-8 pt-5">
+        <button class="btn btn-outline-secondary btn-light"><a href="https://www.facebook.com/" class="text-dark text-decoration-none"><i class="fas fa-share-alt"></i> Share my progress</a></button>
     </div>
   </div>
 
@@ -109,6 +114,9 @@
   $(document).ready(function() {
     let usernameVal = sessionStorage.getItem("username").toString();
     document.getElementById("usernameSpan").innerHTML = usernameVal;
+
+    let bmiVal = sessionStorage.getItem('bmi');
+    document.getElementById("bmi-span").innerHTML = bmiVal;
   });
 </script>
 </body>

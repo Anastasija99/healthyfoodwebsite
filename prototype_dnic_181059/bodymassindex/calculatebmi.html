@@ -20,6 +20,10 @@
   <link href="../css/style.min.css" rel="stylesheet">
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <nav id="navigationbar" class="navbar navbar-expand-lg font-weight-bold px-5 sticky-top">
@@ -182,8 +186,10 @@
         document.querySelector('#calculated_bmi_by_formula').innerHTML = bmi_calculated;
         highlightDivElement(bmi_calculated);
         document. getElementById("calculate-bmi").disabled = true;
+
       }
       document.querySelector('#text-bmi').innerHTML = writeText(bmi_calculated, weight, height);
+      sessionStorage.setItem('bmi', bmi_calculated);
     });
   });
 
