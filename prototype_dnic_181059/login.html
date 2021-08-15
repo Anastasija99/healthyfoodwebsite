@@ -107,7 +107,7 @@
           <div class="form-group">
             <div class="row pt-4">
               <div class="col-9">
-                <button type="submit" class="btn btn-light w-100 border-light button-login1" style="background-color: coral; color: white"><a href="myprofile.html" class="text-decoration-none" style="color: white"> <small class="font-weight-bold">Continue</small></a></button>
+                <button type="submit" id="submitButton" class="btn btn-light w-100 border-light button-login1" style="background-color: coral; color: white"><a href="myprofile.html" class="text-decoration-none" style="color: white"> <small class="font-weight-bold">Continue</small></a></button>
                 <div class="pt-3">
                   <small class="font-weight-bold">Not a member yet? <a href="register.html" style="color: darkorange">Register here.</a></small>
                 </div>
@@ -129,5 +129,14 @@
   </div>
 </div>
 <!-- /MAIN PART -->
+<script>
+  $(document).ready(function() {
+    $("#submitButton").click(function (){
+      let usernameVal = $("#exampleInputEmail1").val();
+      //alert("Username is: " + usernameVal);
+      sessionStorage.setItem("username", usernameVal);
+    });
+  });
+</script>
 </body>
 </html>

@@ -79,8 +79,7 @@
       <img src="images/avatar1.png" class="rounded">
     </div>
     <div class="col-8">
-      <h1>Firstname Lastname</h1>
-      <h2>Age</h2>
+      <h1>Hello <span id="usernameSpan"></span>! </h1>
       <div class="row pt-5">
         <div class="col">
 
@@ -106,5 +105,11 @@
   </div>
 
 </div>
+<script>
+  $(document).ready(function() {
+    let usernameVal = sessionStorage.getItem("username").toString();
+    document.getElementById("usernameSpan").innerHTML = usernameVal;
+  });
+</script>
 </body>
 </html>

@@ -177,7 +177,7 @@
           <div class="form-group">
             <div class="row" style="align-content: center; text-align: center; display: inline">
               <div class="col">
-                <button type="submit" class="btn btn-light w-50 border-light button-login1 mx-auto" style="background-color: coral; color: white"><small class="font-weight-bold">Continue</small></button>
+                <button type="submit" id="submitButtonReg" class="btn btn-light w-50 border-light button-login1 mx-auto" style="background-color: coral; color: white"><small class="font-weight-bold">Continue</small></button>
               </div>
             </div>
             <div class="row" style="align-content: center; text-align: center; display: inline">
@@ -279,6 +279,12 @@
         ].join(' ');
         alert('Hello ' + fullName);
       }
+    });
+
+    $("#submitButtonReg").click(function (){
+      let usernameVal = $("#exampleInputEmail").val();
+      //alert("Username is: " + usernameVal);
+      sessionStorage.setItem("username", usernameVal);
     });
   });
 
