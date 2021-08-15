@@ -28,7 +28,7 @@ body{
 }
 
 .bmi{
-    background-color: lightgrey;
+    background-color: #F8F8F8;
     color: black;
 }
 
@@ -40,7 +40,8 @@ p{
     display: inline;
 }
 .recipe{
-    background-color: lightgrey;
+    background-color: #F8F8F8;
+    border-radius: 0 !important;
     /*color: black;*/
 }
 /* ----------------------------------PROGRESS BAR STYLE-------------------------------------------------------------- */
@@ -185,7 +186,7 @@ p{
     line-height: 60px;
     display: inline-block;
     transition: color 0.2s ease;
-    color: #ebebeb;
+    color: white;
 }
 
 .star:before {
@@ -205,7 +206,7 @@ p{
 
 /* --------------------------------------------DIET TYPES-------------------------------------------------------------*/
 .dietrow{
-    background-color: lightgrey;
+    background-color: #F8F8F8;
 }
 
 /* -----------------------------------------PROGRESS BAR--------------------------------------------------------------*/
